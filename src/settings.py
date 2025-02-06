@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from datetime import timedelta
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,12 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    # my apps
-    'user',
-    'blog'
-    #3rd party apps
+     #3rd party apps
     'rest_framework',
     'rest_framework_simplejwt',
+    
+    # my apps
+    'user',
+    'blog',
+   
 ]
 
 MIDDLEWARE = [
@@ -139,6 +142,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'nafisf026@gmail.com'  
 EMAIL_HOST_PASSWORD = 'jjmtygedsmjzzqtg'  
 
+#maintaining authentications
 REST_FRAMEWORK = {
     
     'DEFAULT_AUTHENTICATION_CLASSES':(
@@ -149,3 +153,10 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
+
+#media settings
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
+
+#user_Model
+AUTH_USER_MODEL='user.CustomUser' #overridding the existing user model setting
