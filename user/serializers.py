@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         model= CustomUser
         fields= ['id','username','email','password','bio','image']
         #hiding the password
-        extra_kwargs={"password": {"write only": True}}
+        extra_kwargs={"password": {"write_only": True}}
        
         #modifying the inbuild function create
         def create(self,validated_data):
@@ -26,7 +26,7 @@ class UserSerializer(serializers.ModelSerializer):
             #generating verification link
             verification_link=self.context['request'].build.absolute_uri(
                 reverse(
-                    viewname='verify email',
+                    viewname='verify_email',
                     kwargs={"token":user.verification_token}
                     
                 )
