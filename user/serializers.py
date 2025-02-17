@@ -24,7 +24,7 @@ class UserSerializer(serializers.ModelSerializer):
         def send_email(self,user):
             
             #generating verification link
-            verification_link=self.context['request'].build.absolute_uri(
+            verification_link=self.context['request'].build_absolute_uri(
                 reverse(
                     viewname='verify_email',
                     kwargs={"token":user.verification_token}
