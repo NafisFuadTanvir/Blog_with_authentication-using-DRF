@@ -51,4 +51,14 @@ class UserSerializer(serializers.ModelSerializer):
             return True
             
             
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= CustomUser
+        fields=["bio","image"]
         
+        def update(self,instance,validated_data):
+            instance.bio=validated_data.get('bio',instance.bio)
+            instance.image=validated_data.get('image',instance.image)
+            instance.save()
+            return instance
+            
